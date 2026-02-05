@@ -48,8 +48,7 @@ const Footer = () => {
             </p>
 
             <p className="text-[#FEFEFE] text-[16px]">
-             <p>© {new Date().getFullYear()} Tekrise. All rights reserved.</p>
-
+             © {new Date().getFullYear()} Tekrise. All rights reserved.
             </p>
 
             {/* Social Icons */}

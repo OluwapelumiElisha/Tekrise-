@@ -56,7 +56,7 @@ const NotFound = () => {
             </h2>
             <p className="text-gray-400 text-sm md:text-lg leading-relaxed mb-12 max-w-xl mx-auto text-center text-[#FEFEFE]">
                 Looks like this page is missing... kind of like a missing semicolon in your code.
-                Don't worry, your learning journey is still on track.
+                {"Don't worry, your learning journey is still on track."}
             </p>
 
             {/* Action Buttons */}
