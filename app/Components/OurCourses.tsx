@@ -5,15 +5,14 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-// --- IMAGE IMPORTS ---
+// --- IMAGE ---
 import arrowIcon from "../assests/Go-In-Arrow.svg";
 import frontendIcon from "../assests/Frontend.svg";
 import backendIcon from "../assests/Backend.svg";
 import uiuxIcon from "../assests/UiUx.svg";
 import dataIcon from "../assests/DataAnalysis.svg";
 import bgArrow from "../assests/OurCoursesArrow.svg"
-import YbgImage from "../assests/YPattern.svg";
-import arrowBgImage from "../assests/arrowBgImage.svg"
+import AdvisorBox from './AdvisorBox';
 
 
 
@@ -83,7 +82,7 @@ const CoursesSection = () => {
                         </div>
 
                         <button
-                            onClick={() => router.push("/courses")}
+                            onClick={() => router.push("courses/frontend")}
                             className="hidden cursor-pointer md:flex bg-[#00E676] hover:bg-[#00c864] text-black font-bold py-3 px-8 rounded-full items-center gap-3 transition-all group"
                         >
                             Explore Courses
@@ -187,7 +186,6 @@ const CoursesSection = () => {
 
                                 {index !== steps.length - 1 && (
                                     <div className="hidden md:flex absolute top-24 left-1/2 w-full items-center justify-center z-0 pointer-events-none">
-                                        {/* The visual line: Short, dark green, distinct */}
                                         <div className="w-12 h-[2px] bg-[#124438]" />
                                     </div>
                                 )}
@@ -207,64 +205,9 @@ const CoursesSection = () => {
                     </div>
 
                     {/* ADVISOR CTA BOX */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="mt-32 relative md:w-[90%] w-[90%] mx-auto bg-[#052C26] rounded-4xl p-10 md:p-12 overflow-hidden text-center flex flex-col items-center justify-center"
-                    >
-                        {/* Background Wavy Pattern Overlay */}
-                        <div
-                            className="absolute inset-0 z-0 opacity-10 bg-cover bg-center mix-blend-overlay"
-                            style={{ backgroundImage: `url(${YbgImage.src})` }}
-                        />
-
-                        <div className="relative z-10 md:max-w-3xl w-[100%]">
-                            <h2 className="text-[25px] md:text-[39px] font-bold text-white mb-4">
-                                Not Sure Which Course Is Right for You?
-                            </h2>
-                            <p className="text-gray-300 text-base md:text-lg mb-10 leading-relaxed font-light">
-                                Get personalized guidance from experienced professionals who are ready to help you choose the right learning path and answer your tech-related questions.
-                            </p>
-
-                            <div className='flex justify-center'>
-                                <button
-                                    onClick={() => router.push("/advisor")}
-                                    className="bg-[#00E676] hover:bg-[#00c864] text-[#0E0E0E] font-bold py-4 px-10 rounded-full flex items-center justify-center gap-3 transition-all active:scale-95 group shadow-xl shadow-[#00E676]/10"
-                                >
-                                    Talk to an Advisor
-                                    <div className="bg-black rounded-full w-7 h-7 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                                        <div className="relative w-full h-full">
-                                            <Image src={arrowIcon} alt="" fill className="object-contain rotate-300" />
-                                        </div>
-                                    </div>
-                                </button>
-                            </div>
-
-
-                        </div>
-
-                        {/* Large Decorative Arrow (Matches y.png branding) */}
-                        {/* <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 opacity-20 hidden lg:block w-[200px] h-[300px]">
-            <Image 
-              src={arrowIcon} 
-              alt="" 
-              fill 
-              className="object-contain object-right" 
-            />
-          </div> */}
-
-
-                        <div className="absolute md:right-14 right-4 md:top-[72%] top-[80%] -translate-y-1/2 w-[179px] h-[208px]  select-none pointer-events-none z-0 md:block hidden">
-                            <Image
-                                src={arrowBgImage}
-                                alt=""
-                                fill
-                                className="object-contain object-right"
-                                priority={false}
-                            />
-                        </div>
-                    </motion.div>
+                    <div className='mt-32'>
+                    <AdvisorBox/>
+                    </div>
                 </div>
             </section>
         </div>

@@ -77,7 +77,7 @@ const NotFound = () => {
                 </Link>
 
                 <Link
-                    href="/courses"
+                    href="/courses/frontend"
                     className="bg-white hover:bg-gray-100 text-[#0E0E0E] text-[16px] font-medium py-4 px-10 rounded-full transition-all active:scale-95 text-center shadow-lg"
                 >
                     Explore Courses

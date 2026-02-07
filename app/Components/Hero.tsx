@@ -1,11 +1,9 @@
 "use client";
-
-import React from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-// --- IMAGE IMPORTS ---
+// --- IMAGE ---
 import heroBg from "../assests/Hero_Bg.svg";
 import arrowIcon from "../assests/Go-In-Arrow.svg";
 import YbgImage from "../assests/YPattern.svg"; 
@@ -82,8 +80,8 @@ const Hero = () => {
                         className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-5"
                     >
                         <button
-                            onClick={() => router.push("/apply")}
-                            className="w-full sm:w-auto bg-[#00E676] hover:bg-[#00c864] text-[#0E0E0E] font-medium py-4 px-10 rounded-full flex items-center justify-center gap-3 transition-all active:scale-95 group shadow-[0_0_20px_rgba(0,230,118,0.2)] text-[16px]"
+                            onClick={() => router.push("")}
+                            className="w-full sm:w-auto bg-[#00E676] hover:bg-[#00c864] text-[#0E0E0E] font-medium py-4 px-10 rounded-full flex items-center justify-center gap-3 transition-all active:scale-95 group shadow-[0_0_20px_rgba(0,230,118,0.2)] text-[16px] cursor-pointer"
                         >
                             Get Started
                             <div className="bg-black rounded-full w-7 h-7 flex items-center justify-center group-hover:translate-x-1 transition-transform">
@@ -94,8 +92,8 @@ const Hero = () => {
                         </button>
 
                         <button
-                            onClick={() => router.push("")}
-                            className="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#0E0E0E] font-medium text-[16px] py-4 px-12 rounded-full transition-all active:scale-95 shadow-lg"
+                            onClick={() => router.push("/courses/frontend")}
+                            className="w-full sm:w-auto bg-white hover:bg-gray-100 text-[#0E0E0E] font-medium text-[16px] py-4 px-12 rounded-full transition-all active:scale-95 shadow-lg cursor-pointer"
                         >
                             View Courses
                         </button>
@@ -124,7 +122,7 @@ const Hero = () => {
             </section>
 
 
-            {/* y tekrise Academy  */}
+            {/* ==================================== Y tekrise Academy ================================== */}
 
             <div className=''>
                 <section className="relative w-full py-16 px-6 md:px-10 overflow-hidden flex items-center justify-center bg-white">

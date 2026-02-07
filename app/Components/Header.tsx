@@ -1,10 +1,9 @@
 "use client";
-
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Image from 'next/image';
 
-// --- IMAGE IMPORTS ---
+// --- IMAGE  ---
 import logoImg from "../assests/Tekrise-Logo.svg";
 import arrowRightIcon from "../assests/Go-In-Arrow.svg";
 import dropdownIcon from "../assests/dropdownIcon.svg";
@@ -13,6 +12,7 @@ import close from "../assests/Close.svg"
 
 const Header = () => {
     const router = useRouter();
+    const pathname = usePathname(); 
     const [isCoursesOpen, setIsCoursesOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobileCoursesOpen, setIsMobileCoursesOpen] = useState(false); // State for mobile dropdown
@@ -25,11 +25,14 @@ const Header = () => {
         { name: "Data Analysis", path: "/courses/data-analysis" }
     ];
 
-    // Helper for mobile navigation
-    const navigate = (path: string) => {
+   const navigate = (path: string) => {
         router.push(path);
         setIsMobileMenuOpen(false);
     };
+
+    const isActive = (path: string) => pathname === path;
+    
+    const isCoursesActive = pathname.startsWith("/courses");
 
     return (
         <header className="fixed top-6 left-0 w-full z-50 px-4 md:px-10">
@@ -51,10 +54,12 @@ const Header = () => {
 
                     {/* Desktop Navigation */}
                     <ul className="hidden lg:flex items-center gap-12 text-white font-normal text-[20px]">
-                        <li onClick={() => router.push("/")} className="text-[#00E676] cursor-pointer hover:opacity-80 transition-all">
+                        <li onClick={() => router.push("/")} className={`cursor-pointer transition-all font-medium ${ isActive("/") ? "text-[#01E888]" : "hover:text-[#00E676]"}`}>
                             Home
                         </li>
-                        <li onClick={() => router.push("/about")} className="hover:text-[#00E676] cursor-pointer transition-all">
+                        <li onClick={() => router.push("/about")} className={`cursor-pointer transition-all ${
+                                isActive("/about") ? "text-[#01E888]" : "hover:text-[#00E676]"
+                            }`}>
                             About Us
                         </li>
 
@@ -63,7 +68,9 @@ const Header = () => {
                             onMouseEnter={() => setIsCoursesOpen(true)}
                             onMouseLeave={() => setIsCoursesOpen(false)}
                         >
-                            <div className="flex items-center gap-2 group-hover:text-[#00E676] transition-colors">
+                            <div className={`flex items-center gap-2 transition-colors ${
+                                isCoursesActive ? "text-[#01E888]" : "group-hover:text-[#00E676]"
+                            }`}>
                                 Courses
                                 <div className={`relative w-5 h-5 transition-transform duration-300 ease-in-out ${isCoursesOpen ? 'rotate-180' : 'rotate-0'}`}>
                                     <Image
@@ -88,7 +95,9 @@ const Header = () => {
                             </div>
                         </li>
 
-                        <li onClick={() => router.push("/contact")} className="hover:text-[#00E676] cursor-pointer transition-all">
+                        <li onClick={() => router.push("/contact")} className={`cursor-pointer transition-all ${
+                                isActive("/contact") ? "text-[#00E676]" : "hover:text-[#00E676]"
+                            }`}>
                             Contact Us
                         </li>
                     </ul>
@@ -96,19 +105,19 @@ const Header = () => {
                     {/* Action Buttons */}
                     <div className="hidden lg:flex items-center gap-4">
                         <button
-                            onClick={() => router.push("/login")}
+                            onClick={() => router.push("")}
                             className="text-[#FEFEFE] text-[16px] font-medium border-[1px] cursor-pointer border-[#01E888] px-16 py-2.5 rounded-full hover:bg-[#00E676]/10 transition-all font-medium"
                         >
                             Log In
                         </button>
 
                         <button
-                            onClick={() => router.push("/apply")}
+                            onClick={() => router.push("")}
                             className="bg-[#01E888] text-[#0E0E0E] text-[16px] px-6 py-2.5 rounded-full font-bold flex items-center gap-3 hover:bg-[#00c864] transition-all group cursor-pointer"
                         >
                             Apply Now
                             <div className="bg-black rounded-full w-7 h-7 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                                <div className="relative w-6 h-6">
+                                <div className="relative w-full h-full">
                                     <Image src={arrowRightIcon} alt="" fill className="object-contain" />
                                 </div>
                             </div>
@@ -137,14 +146,14 @@ const Header = () => {
                     </div>
 
                     <nav className="flex flex-col gap-8 text-xl text-white font-medium">
-                        <div onClick={() => navigate("/")} className="cursor-pointer">Home</div>
-                        <div onClick={() => navigate("/about")} className="cursor-pointer">About Us</div>
+                        <div onClick={() => navigate("/")} className={`cursor-pointer ${isActive("/") ? "text-[#01E888]" : ""}`}>Home</div>
+                        <div onClick={() => navigate("/about")} className={`cursor-pointer ${isActive("/about") ? "text-[#01E888]" : ""}`}>About Us</div>
 
                         {/* Mobile Courses Dropdown */}
                         <div className="flex flex-col gap-4">
                             <div
                                 onClick={() => setIsMobileCoursesOpen(!isMobileCoursesOpen)}
-                                className="flex items-center justify-between text-[#00E676] cursor-pointer"
+                                className={`flex items-center justify-between cursor-pointer ${isCoursesActive ? "text-[#01E888]" : ""}`}
                             >
                                 Courses
                                 <div className={`relative w-4 h-4 transition-transform duration-300 ${isMobileCoursesOpen ? 'rotate-180' : ''}`}>
@@ -161,7 +170,7 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <div onClick={() => navigate("/contact")} className="cursor-pointer">Contact Us</div>
+                        <div onClick={() => navigate("/contact")} className={`cursor-pointer ${isActive("/contact") ? "text-[#00E676]" : ""}`}>Contact Us</div>
                     </nav>
 
                     <div className="mt-auto flex flex-col gap-4">
